@@ -49,6 +49,7 @@ class SnapshotAwareKotlinSignatureProvider(context: DokkaContext) : SignaturePro
     }
 
     snapshotImageProvider = SnapshotImageProvider(path.toPath())
+    logger.progress("The DokkaPaparazzi plugin has been successfully added with the snapshot path \"$path\".")
   }
 
   override fun signature(documentable: Documentable): List<ContentNode> {
