@@ -1,0 +1,11 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:androidx.compose.runtime////PointingToDeclaration/dokka-integration-test/androidx.compose.runtime/index.html
+$dokka.location:androidx.compose.runtime/Composable///PointingToDeclaration/dokka-integration-test/androidx.compose.runtime/-composable/index.html
+$dokka.location:land.sungbin.test////PointingToDeclaration/dokka-integration-test/land.sungbin.test/index.html
+$dokka.location:land.sungbin.test//Bear/#/PointingToDeclaration/dokka-integration-test/land.sungbin.test/-bear.html
+$dokka.location:land.sungbin.test//MyFavoriteToystory/#/PointingToDeclaration/dokka-integration-test/land.sungbin.test/-my-favorite-toystory.html
+$dokka.location:land.sungbin.test//Pororo/#/PointingToDeclaration/dokka-integration-test/land.sungbin.test/-pororo.html
+androidx.compose.runtime
+land.sungbin.test
+
