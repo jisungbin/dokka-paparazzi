@@ -31,7 +31,7 @@ import org.jsoup.nodes.Element
 import utils.TestOutputWriter
 import utils.TestOutputWriterPlugin
 
-abstract class AbstractComposePaparazziTest(
+abstract class AbstractDokkaPaparazziTest(
   logger: TestLogger = TestLogger(DokkaConsoleLogger(LoggingLevel.DEBUG)),
 ) : BaseAbstractTest(logger) {
   protected fun test(

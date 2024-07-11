@@ -4,6 +4,7 @@
  * Licensed under the MIT.
  * Please see full license: https://github.com/jisungbin/dokka-paparazzi/blob/main/LICENSE
  */
+
 plugins {
   kotlin("jvm")
   id("org.jetbrains.dokka") version "1.9.20"

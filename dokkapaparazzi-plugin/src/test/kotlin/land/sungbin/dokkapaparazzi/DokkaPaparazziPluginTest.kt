@@ -32,7 +32,7 @@ import org.opentest4j.AssertionFailedError
 import utils.TestOutputWriter
 
 @OptIn(ExperimentalPathApi::class)
-class DokkaPaparazziPluginTest : AbstractComposePaparazziTest() {
+class DokkaPaparazziPluginTest : AbstractDokkaPaparazziTest() {
   @Test fun composableFunctionDocumentedWithSnapshot() = test(
     "src/main/kotlin/Composable.kt",
     """
