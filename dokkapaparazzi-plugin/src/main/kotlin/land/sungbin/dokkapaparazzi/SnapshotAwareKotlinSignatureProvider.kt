@@ -45,7 +45,7 @@ class SnapshotAwareKotlinSignatureProvider(context: DokkaContext) : SignaturePro
 
     val values = Gson().fromJson<Map<String, String>>(configuration.values, object : TypeToken<Map<String, String>>() {}.type)
     val path = checkNotNull(values[SnapshotImageProvider.CONFIGURATION_PATH_KEY]) {
-      "The 'snapshotImageDir' field in the 'land.sungbin.dokkapaparazzi.DokkaPaparazziPlugin' Dokka configuration is missing."
+      "The 'snapshotDir' field in the 'land.sungbin.dokkapaparazzi.DokkaPaparazziPlugin' Dokka configuration is missing."
     }
 
     snapshotImageProvider = SnapshotImageProvider(path.toPath())
