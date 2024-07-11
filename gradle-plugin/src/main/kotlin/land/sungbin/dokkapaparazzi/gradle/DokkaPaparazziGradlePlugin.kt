@@ -15,12 +15,11 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.dokka.gradle.AbstractDokkaTask
-import org.jetbrains.dokka.gradle.DokkaPlugin
 
 @Suppress("unused") // Used by reflection in Gradle.
 class DokkaPaparazziGradlePlugin : Plugin<Project> {
   override fun apply(target: Project) {
-    check(target.plugins.hasPlugin(DokkaPlugin::class.java)) {
+    check(target.plugins.hasPlugin("org.jetbrains.dokka")) {
       "Dokka plugin is not applied."
     }
 
@@ -36,7 +35,7 @@ class DokkaPaparazziGradlePlugin : Plugin<Project> {
         pluginsMapConfiguration.put(
           DokkaPaparazziPlugin.PLUGIN_NAME,
           provider {
-            check(extension.snapshotDir.isPresent) { "snapshotDir is not set." }
+            check(extension.snapshotDir.isPresent) { "'snapshotDir' is not set." }
             val path = extension.snapshotDir.get().asFile.path
             val configuration = mapOf(SnapshotImageProvider.CONFIGURATION_PATH_KEY to path)
             gson.toJson(configuration)

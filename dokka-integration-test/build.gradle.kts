@@ -11,11 +11,7 @@ plugins {
   // TODO
   //  val dokkaVersion: String by rootProject.properties
   id("org.jetbrains.dokka") version "1.9.20"
-
-  // Prerequisite:
-  //   - `./gradlew :dokkapaparazzi-plugin:publishToMavenLocal`
-  //   - `./gradlew :gradle-plugin:publishToMavenLocal`
-  id("land.sungbin.dokkapaparazzi") version "0.1.0"
+  id("land.sungbin.dokka-paparazzi") version "0.1.0"
 }
 
 val removeOldOutputTask = tasks.create<Delete>("removeOldOutput") {

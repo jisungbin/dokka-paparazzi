@@ -21,11 +21,14 @@ val functionalTestTask = tasks.register<Test>(functionalTest.name) {
   mustRunAfter(tasks.test)
 }
 
+@Suppress("UnstableApiUsage")
 gradlePlugin {
   testSourceSets(functionalTest)
   plugins {
     create("dokkaPaparazziGradle") {
-      id = "land.sungbin.dokkapaparazzi"
+      id = "land.sungbin.dokka-paparazzi"
+      tags = listOf("dokka", "dokka-plugin")
+      description = "Connect Dokka with screenshot-testing libraries."
       implementationClass = "land.sungbin.dokkapaparazzi.gradle.DokkaPaparazziGradlePlugin"
     }
   }
@@ -53,11 +56,13 @@ val dokkaVersion: String by rootProject.properties
 dependencies {
   compileOnly(gradleApi())
   compileOnly(projects.dokkapaparazziPlugin)
-  compileOnly("org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion")
+
+  implementation("org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion")
   implementation("com.google.code.gson:gson:2.11.0")
 
   "functionalTestImplementation"(kotlin("test-junit5"))
   "functionalTestImplementation"(gradleTestKit())
+  "functionalTestImplementation"("com.willowtreeapps.assertk:assertk:0.28.1")
 }
 
 abstract class UpdatePluginVersionTask : DefaultTask() {
