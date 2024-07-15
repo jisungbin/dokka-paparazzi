@@ -23,6 +23,7 @@ pluginManagement {
     }
     mavenCentral()
     gradlePluginPortal()
+    mavenLocal()
   }
 }
 
@@ -37,10 +38,12 @@ dependencyResolutionManagement {
       }
     }
     mavenCentral()
+    mavenLocal()
   }
 }
 
 include(
-  "dokkapaparazzi-plugin",
-  "dokka-integration-test",
+  ":gradle-plugin",
+  ":dokkapaparazzi-plugin",
+  ":dokka-integration-test",
 )

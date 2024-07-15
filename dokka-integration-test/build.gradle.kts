@@ -7,7 +7,11 @@
 
 plugins {
   kotlin("jvm")
+
+  // TODO
+  //  val dokkaVersion: String by rootProject.properties
   id("org.jetbrains.dokka") version "1.9.20"
+  id("land.sungbin.dokka-paparazzi") version "0.1.0"
 }
 
 val removeOldOutputTask = tasks.create<Delete>("removeOldOutput") {
@@ -17,15 +21,8 @@ val removeOldOutputTask = tasks.create<Delete>("removeOldOutput") {
 tasks.dokkaHtml {
   dependsOn(removeOldOutputTask)
   outputDirectory = projectDir.resolve("output")
-  pluginsMapConfiguration = mapOf(
-    "land.sungbin.dokkapaparazzi.DokkaPaparazziPlugin" to """
-      |{
-      |  "snapshotImageDir": "${projectDir.resolve("snapshots")}"
-      |}
-    """.trimMargin(),
-  )
 }
 
-dependencies {
-  dokkaPlugin(projects.dokkapaparazziPlugin)
+dokkaPaparazzi {
+  snapshotDir = projectDir.resolve("snapshots")
 }

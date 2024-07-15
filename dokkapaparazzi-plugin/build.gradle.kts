@@ -5,31 +5,24 @@
  * Please see full license: https://github.com/jisungbin/dokka-paparazzi/blob/main/LICENSE
  */
 
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
   kotlin("jvm")
+  id("com.vanniktech.maven.publish")
 }
 
 kotlin {
   compilerOptions {
-    jvmTarget = JvmTarget.JVM_17
     optIn.addAll(
       "org.jetbrains.dokka.InternalDokkaApi",
       "org.jetbrains.dokka.plugability.DokkaPluginApiPreview",
-      "kotlin.contracts.ExperimentalContracts",
     )
   }
 }
 
-tasks.test {
-  useJUnitPlatform()
-}
+// TODO https://github.com/Kotlin/dokka/issues/2812
+val dokkaVersion: String by rootProject.properties
 
 dependencies {
-  // TODO https://github.com/Kotlin/dokka/issues/2812
-  val dokkaVersion = "1.9.20"
-
   compileOnly("org.jetbrains.dokka:dokka-core:$dokkaVersion")
   implementation("org.jetbrains.dokka:dokka-base:$dokkaVersion")
   implementation("org.jetbrains.kotlinx:kotlinx-html:0.11.0")

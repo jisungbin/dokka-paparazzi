@@ -39,7 +39,7 @@ class SnapshotImageProvider(
   }
 
   companion object {
-    const val CONFIGURATION_PATH_KEY = "snapshotImageDir"
+    const val CONFIGURATION_PATH_KEY = "snapshotDir"
 
     /** @snapshotname a,b,c */
     const val TAG_NAME_ANNOTATION = "snapshotname"

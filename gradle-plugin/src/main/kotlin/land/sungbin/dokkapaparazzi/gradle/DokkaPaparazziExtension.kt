@@ -1,0 +1,15 @@
+/*
+ * Developed by Ji Sungbin 2024.
+ *
+ * Licensed under the MIT.
+ * Please see full license: https://github.com/jisungbin/dokka-paparazzi/blob/main/LICENSE
+ */
+
+package land.sungbin.dokkapaparazzi.gradle
+
+import javax.inject.Inject
+import org.gradle.api.model.ObjectFactory
+
+abstract class DokkaPaparazziExtension @Inject constructor(objects: ObjectFactory) {
+  val snapshotDir = objects.directoryProperty()
+}

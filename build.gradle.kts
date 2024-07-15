@@ -13,6 +13,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   kotlin("jvm") version "2.0.0"
   id("com.diffplug.spotless") version "6.25.0"
+  id("com.vanniktech.maven.publish") version "0.29.0" apply false
   idea
 }
 
@@ -73,7 +74,11 @@ allprojects {
   tasks.withType<KotlinCompile> {
     compilerOptions {
       jvmTarget = JvmTarget.JVM_17
-      optIn.addAll("kotlin.OptIn", "kotlin.RequiresOptIn")
+      optIn.addAll(
+        "kotlin.OptIn",
+        "kotlin.RequiresOptIn",
+        "kotlin.contracts.ExperimentalContracts",
+      )
     }
   }
 }
@@ -86,5 +91,5 @@ subprojects {
 }
 
 tasks.register<Delete>("cleanAll") {
-  allprojects.map { project -> project.layout.buildDirectory }.forEach(::delete)
+  delete(*allprojects.map { project -> project.layout.buildDirectory }.toTypedArray())
 }
