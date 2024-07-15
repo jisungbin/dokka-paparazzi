@@ -1,21 +1,31 @@
+/*
+ * Developed by Ji Sungbin 2024.
+ *
+ * Licensed under the MIT.
+ * Please see full license: https://github.com/jisungbin/dokka-paparazzi/blob/main/LICENSE
+ */
+
 package land.sungbin.dokkapaparazzi.gradle
 
 import assertk.all
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.containsOnly
 import java.nio.file.Path
 import kotlin.io.path.createDirectories
 import kotlin.io.path.createDirectory
 import kotlin.io.path.createFile
 import kotlin.io.path.notExists
+import kotlin.io.path.pathString
 import kotlin.io.path.writeText
-import kotlin.random.Random
 import kotlin.test.Test
 import org.gradle.testkit.runner.GradleRunner
+import org.jsoup.Jsoup
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.io.TempDir
 
 class DokkaPaparazziGradlePluginTest {
-  // @field:TempDir
+  @field:TempDir
   lateinit var projectDir: Path
 
   private lateinit var moduleDir: Path
@@ -25,8 +35,6 @@ class DokkaPaparazziGradlePluginTest {
   private lateinit var moduleBuildFile: Path
 
   @BeforeEach fun setup() {
-    projectDir = Path.of("/Users/jisungbin/IdeaProjects/test").resolve(Random.nextInt().toString())
-
     projectSettingsFile = projectDir.resolve("settings.gradle.kts").ensureFileCreated()
     projectBuildFile = projectDir.resolve("build.gradle.kts").ensureFileCreated()
     moduleDir = projectDir.resolve("test").createDirectory()
@@ -87,23 +95,14 @@ class DokkaPaparazziGradlePluginTest {
 
   @Test fun snapshotDirWithDokkaPluginThenWorksFine() {
     touchSettingsFile(projectName = "snapshotDirWithDokkaPluginThenBuildSuccess")
-    moduleBuildFile.writeText(
-      """
-      plugins {
-        kotlin("jvm")
-        ${dokkaPlugin()}
-        ${dokkaPaparazziPlugin()}
-      }
-      
-      dokkaPaparazzi {
-        snapshotDir = projectDir.resolve("snapshots")
-      }
-      """.trimIndent(),
-    )
+    val dokkaPath: Path
 
     moduleDir.resolve("snapshots").createDirectory()
     moduleDir
-      .resolve("src/main/kotlin").also(Path::createDirectories)
+      .resolve("src/main/kotlin").also {
+        it.createDirectories()
+        dokkaPath = it
+      }
       .resolve("Hello.kt").also(Path::createFile)
       .writeText(
         """
@@ -114,8 +113,36 @@ class DokkaPaparazziGradlePluginTest {
         """.trimIndent(),
       )
 
+    moduleBuildFile.writeText(
+      """
+      plugins {
+        kotlin("jvm")
+        ${dokkaPlugin()}
+        ${dokkaPaparazziPlugin()}
+      }
+      
+      tasks.dokkaHtml {
+        dokkaSourceSets.register("main") {
+          sourceRoots.from("${dokkaPath.pathString}")
+        }
+      }
+      
+      dokkaPaparazzi {
+        snapshotDir = projectDir.resolve("snapshots")
+      }
+      """.trimIndent(),
+    )
+
     val result = runner().withArguments(":test:dokkaHtml").build()
-    println(result.output)
+    assertThat(result.output).contains("The DokkaPaparazzi plugin has been successfully added with the snapshot path")
+
+    // Assertion that Dokka has run successfully.
+    assertThat(
+      Jsoup.parse(projectDir.resolve("test/build/dokka/html/test/[root]/hello.html"))
+        .select("p.paragraph"),
+    )
+      .transform { it.eachText() }
+      .containsOnly("Hello, Dokka!")
   }
 
   private fun runner(): GradleRunner =
