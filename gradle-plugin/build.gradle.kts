@@ -63,7 +63,7 @@ dependencies {
   "functionalTestImplementation"(kotlin("test-junit5"))
   "functionalTestImplementation"(gradleTestKit())
   "functionalTestImplementation"("com.willowtreeapps.assertk:assertk:0.28.1")
-  "functionalTestImplementation"("org.jsoup:jsoup:1.18.1")
+  "functionalTestImplementation"("org.jsoup:jsoup:1.18.3")
 }
 
 abstract class UpdatePluginVersionTask : DefaultTask() {
