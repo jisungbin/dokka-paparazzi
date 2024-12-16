@@ -10,7 +10,7 @@ plugins {
 
   // TODO
   //  val dokkaVersion: String by rootProject.properties
-  id("org.jetbrains.dokka") version "1.9.20"
+  id("org.jetbrains.dokka") version "2.0.0"
   id("land.sungbin.dokka-paparazzi") version "0.1.0"
 }
 
