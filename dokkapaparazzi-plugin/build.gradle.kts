@@ -33,7 +33,7 @@ dependencies {
   testImplementation(kotlin("reflect")) // for assertk assertion message
   testImplementation("org.jsoup:jsoup:1.18.1") // for html assertion
   testImplementation("com.willowtreeapps.assertk:assertk:0.28.1")
-  testImplementation("com.squareup.okio:okio-fakefilesystem:3.9.0")
+  testImplementation("com.squareup.okio:okio-fakefilesystem:3.10.2")
   testImplementation("org.jetbrains.dokka:dokka-test-api:$dokkaVersion")
   testImplementation("org.jetbrains.dokka:dokka-base-test-utils:$dokkaVersion")
 }
