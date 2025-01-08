@@ -27,7 +27,7 @@ dependencies {
   implementation("org.jetbrains.dokka:dokka-base:$dokkaVersion")
   implementation("org.jetbrains.kotlinx:kotlinx-html:0.11.0")
   implementation("com.google.code.gson:gson:2.11.0")
-  implementation("com.squareup.okio:okio:3.9.0")
+  implementation("com.squareup.okio:okio:3.10.2")
 
   testImplementation(kotlin("test-junit5"))
   testImplementation(kotlin("reflect")) // for assertk assertion message
