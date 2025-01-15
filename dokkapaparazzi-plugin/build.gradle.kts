@@ -25,7 +25,7 @@ val dokkaVersion: String by rootProject.properties
 dependencies {
   compileOnly("org.jetbrains.dokka:dokka-core:$dokkaVersion")
   implementation("org.jetbrains.dokka:dokka-base:$dokkaVersion")
-  implementation("org.jetbrains.kotlinx:kotlinx-html:0.11.0")
+  implementation("org.jetbrains.kotlinx:kotlinx-html:0.12.0")
   implementation("com.google.code.gson:gson:2.11.0")
   implementation("com.squareup.okio:okio:3.9.0")
 
