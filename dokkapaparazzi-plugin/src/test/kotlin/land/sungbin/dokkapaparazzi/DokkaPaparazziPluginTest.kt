@@ -44,6 +44,7 @@ class DokkaPaparazziPluginTest : AbstractDokkaPaparazziTest() {
     package androidx.compose.runtime
     @Composable fun FakeSnapshot() = Unit
     """,
+    cleanupOutput = false,
     verifyOnPagesGenerationStage = { page ->
       val embeddeds = page.embeddedResources()
       assertThat(embeddeds).hasSize(1)

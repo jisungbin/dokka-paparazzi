@@ -90,6 +90,7 @@ abstract class AbstractDokkaPaparazziTest(
         },
         testLogger = logger,
       ) {
+        documentablesCreationStage = { println("A: $it") }
         pagesGenerationStage = verifyOnPagesGenerationStage
         renderingStage = { root, context ->
           verifyOnRenderingStage(testWriter.writer, root, context)

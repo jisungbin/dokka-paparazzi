@@ -29,6 +29,8 @@ dependencies {
   implementation("com.google.code.gson:gson:2.11.0")
   implementation("com.squareup.okio:okio:3.9.0")
 
+  testImplementation("org.jetbrains.dokka:analysis-kotlin-symbols:2.0.0")
+
   testImplementation(kotlin("test-junit5"))
   testImplementation(kotlin("reflect")) // for assertk assertion message
   testImplementation("org.jsoup:jsoup:1.18.1") // for html assertion

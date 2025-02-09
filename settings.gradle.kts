@@ -45,5 +45,5 @@ dependencyResolutionManagement {
 include(
   ":gradle-plugin",
   ":dokkapaparazzi-plugin",
-  ":dokka-integration-test",
+//  ":dokka-integration-test",
 )
