@@ -58,7 +58,7 @@ dependencies {
   compileOnly(projects.dokkapaparazziPlugin)
 
   implementation("org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion")
-  implementation("com.google.code.gson:gson:2.11.0")
+  implementation("com.google.code.gson:gson:2.13.2")
 
   "functionalTestImplementation"(kotlin("test-junit5"))
   "functionalTestImplementation"(gradleTestKit())
